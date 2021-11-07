@@ -1,6 +1,5 @@
 #! /usr/bin/env node
 const { program } = require('commander')
-const inquirer = require('inquirer');
 const sites = require('./commands/sites');
 const installs = require('./commands/installs');
 const acc = require('./commands/accounts');
