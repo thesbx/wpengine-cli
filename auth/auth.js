@@ -11,6 +11,8 @@ const WPENGINE_PASSWORD = process.env.WPENGINE_PASSWORD;
 const WPENGINE_USER_ID = process.env.WPENGINE_USER_ID;
 
 const authorization = "Basic " + Buffer.from(WPENGINE_USER_ID + ":" + WPENGINE_PASSWORD).toString('base64');
+
+const authenticated; // prevent unauthenticated users from using commands.
 /**
  * 
  * @param {string} key 
@@ -45,6 +47,7 @@ const authorization = "Basic " + Buffer.from(WPENGINE_USER_ID + ":" + WPENGINE_P
 
 const signin = async () => {
     // Add prompts here
+    console.log('Testing signin');
 }
 
-module.exports = { signin, setEnv, getEnv, authorization, WPENGINE_PASSWORD, WPENGINE_USER_ID };
+module.exports = { signin, setEnv, getEnv, authorization, WPENGINE_PASSWORD, WPENGINE_USER_ID, authenticated };
