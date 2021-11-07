@@ -65,7 +65,17 @@ async function register() {
             {
                 type: "input",
                 name: "account_id",
-                message: "Enter your API username"
+                message: "Enter your API username",
+                validate(value) {
+                    const pass = value.match(
+                        /([0-9A-Z]{8})(-)([0-9A-F]{4})(-)([0-9A-Z]{4})(-)([0-9A-Z]{4})(-)([0-9A-Z]{12})/i
+                    );
+                    if (pass) {
+                      return true;
+                    }
+                
+                    return 'Please enter a valid username';
+                },
             },
             {
                 type: "password",

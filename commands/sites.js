@@ -210,7 +210,7 @@ const sites = () => {
                                     }
                                 
                                     return 'Please enter a valid name';
-                                  },
+                                },
                             }
                         ])
                         .then((answers) => {
