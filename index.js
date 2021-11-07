@@ -2,12 +2,17 @@
 const { program } = require('commander')
 const inquirer = require('inquirer');
 const sites = require('./commands/sites');
+const acc = require('./commands/accounts');
 
 program
     .command('sites')
     .description('Sites API Endpoint')
-    .option('-l', '--list <limit>', 'List sites from WP Engine')
-    .action(sites.runInquirer)
+    .action(sites.sites)
+
+program
+    .command('accounts')
+    .description('Accounts API Endpoint')
+    .action(acc.accounts)
 
 
 

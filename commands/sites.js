@@ -1,6 +1,7 @@
 const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
 const inquirer = require('inquirer');
 const auth = require('../auth/auth');
+const accounts = require('../commands/accounts');
 
 const getSites = async (limit) => {
     if (limit < 1) {
@@ -11,7 +12,10 @@ const getSites = async (limit) => {
         const json = await data.json();
     
         const sites = json.results.map(data => {
-            return data;
+            return {
+                name: data.name,
+                value: data.id
+            };
         })
         return sites;   
     } else {
@@ -43,8 +47,18 @@ const getSiteById = async (id) => {
     return json;
 }
 
-function addSite(name, accountId) {
-
+const addSite = async (body) => {
+    const response = await fetch(`https://api.wpengineapi.com/v1/sites`, {
+        method: 'POST',
+        body: JSON.stringify(body),
+        headers: { 
+            'Authorization': auth.authorization,
+            'Content-Type': 'application/json',
+            'accept': 'application/json'
+        },
+    })
+    const data = await response.json();
+    console.log(data);
 }
 
 function updateSite(id, {options}) {
@@ -55,7 +69,8 @@ function deleteSite(id) {
 
 }
 
-const runInquirer = () => {
+
+const sites = () => {
     inquirer
     .prompt([
         {
@@ -63,9 +78,9 @@ const runInquirer = () => {
             message: 'Select an action',
             name: 'actions',
             choices: [
+                'Add site',
                 'Show all',
                 'Get by ID',
-                'Add site',
                 'Update site',
                 'Delete site'
             ]
@@ -97,7 +112,35 @@ const runInquirer = () => {
                             .then((siteId) => {
                                 getSiteById(siteId.siteList).then(
                                     data => {
-                                        console.log(data);
+                                        inquirer
+                                        .prompt([
+                                            {
+                                                type: 'list',
+                                                message: 'Select a site',
+                                                name: 'options',
+                                                choices: [
+                                                    "View installs",
+                                                    "Edit site",
+                                                    "Delete site"
+                                                ]
+                                            }
+                                        ])
+                                        .then((siteId) => {
+                                            if (siteId.options[0]) {
+                                                console.log(data.installs);
+                                            } else if (siteId.options[1]) {
+                                                // Edit site
+                                            } else if (siteId.options[2]) {
+                                                // Remove site
+                                            }
+                                        })
+                                        .catch((error) => {
+                                            if (error.isTtyError) {
+                                              // Prompt couldn't be rendered in the current environment
+                                            } else {
+                                              // Something else went wrong
+                                            }
+                                        });
                                     }
                                 )
                             })
@@ -141,10 +184,44 @@ const runInquirer = () => {
                       // Something else went wrong
                     }
                 });
+        } else if (answers.actions === 'Add site') {
+            accounts.listAccounts().then(
+                accounts => {
+                    inquirer
+                    .prompt([
+                        {
+                            type: 'list',
+                            message: 'Choose an account',
+                            name: 'accountId',
+                            choices: accounts
+                        },
+                        {
+                            type: 'input',
+                            name: 'siteName',
+                            message: 'Enter a site name'
+                        }
+                    ])
+                    .then((answers) => {
+                        addSite(
+                            {
+                                name: answers.siteName, 
+                                account_id: answers.accountId
+                            }
+                        )
+                    })
+                    .catch((error) => {
+                        if (error.isTtyError) {
+                          // Prompt couldn't be rendered in the current environment
+                        } else {
+                          // Something else went wrong
+                        }
+                    });      
+                }     
+            )      
         }
     })
 }
 
 
 
-module.exports = {runInquirer};
+module.exports = {sites};
