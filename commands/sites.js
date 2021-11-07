@@ -2,6 +2,7 @@ const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch
 const inquirer = require('inquirer');
 const auth = require('../auth/auth');
 const accounts = require('../commands/accounts');
+const chalk = require('chalk');
 
 const getSites = async (limit) => {
     if (limit < 1) {
@@ -75,24 +76,24 @@ const sites = () => {
     .prompt([
         {
             type: 'list',
-            message: 'Select an action',
+            message: chalk.blue('Select an action'),
             name: 'actions',
             choices: [
-                'Add site',
-                'Show all',
-                'Get by ID',
-                'Update site',
-                'Delete site'
+                'add site',
+                'show all',
+                'get by ID',
+                'update site',
+                'delete site'
             ]
         }
     ])
     .then((answers) => {
-        if (answers.actions === 'Show all') {
+        if (answers.actions === 'show all') {
             inquirer
             .prompt([
                 {
                     type: 'number',
-                    message: 'How many sites would you like to list',
+                    message: chalk.blue('How many sites would you like to list'),
                     name: 'siteLimit',
                     default: 100
                 }
@@ -104,7 +105,7 @@ const sites = () => {
                             .prompt([
                                 {
                                     type: 'list',
-                                    message: 'Select a site',
+                                    message: chalk.blue('Select a site'),
                                     name: 'siteList',
                                     choices: data
                                 }
@@ -116,7 +117,7 @@ const sites = () => {
                                         .prompt([
                                             {
                                                 type: 'list',
-                                                message: 'Select a site',
+                                                message: chalk.blue('Select a site'),
                                                 name: 'options',
                                                 choices: [
                                                     "View installs",
@@ -161,12 +162,12 @@ const sites = () => {
                   // Something else went wrong
                 }
             });
-        } else if (answers.actions === 'Get by ID') {
+        } else if (answers.actions === 'get by ID') {
             inquirer
                 .prompt([
                     {
                         type: 'input',
-                        message: 'Enter the sites unique ID',
+                        message: chalk.blue('Enter the sites unique ID'),
                         name: 'site_by_id'
                     }
                 ])
@@ -184,21 +185,31 @@ const sites = () => {
                       // Something else went wrong
                     }
                 });
-        } else if (answers.actions === 'Add site') {
+        } else if (answers.actions === 'add site') {
             accounts.listAccounts().then(
                 accounts => {
                     inquirer
                     .prompt([
                         {
                             type: 'list',
-                            message: 'Choose an account',
+                            message: chalk.blue('Choose an account'),
                             name: 'accountId',
                             choices: accounts
                         },
                         {
                             type: 'input',
                             name: 'siteName',
-                            message: 'Enter a site name'
+                            message: chalk.blue('Enter a site name'),
+                            validate(value) {
+                                const pass = value.match(
+                                  /([\w\-\s]*)/g
+                                );
+                                if (pass) {
+                                  return true;
+                                }
+                          
+                                return 'Please enter a valid name';
+                              },
                         }
                     ])
                     .then((answers) => {
