@@ -95,7 +95,11 @@ const runInquirer = () => {
                                 }
                             ])
                             .then((siteId) => {
-                                console.log(siteId.siteList)
+                                getSiteById(siteId.siteList).then(
+                                    data => {
+                                        console.log(data);
+                                    }
+                                )
                             })
                             .catch((error) => {
                                 if (error.isTtyError) {
