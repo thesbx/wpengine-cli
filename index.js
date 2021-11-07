@@ -2,7 +2,7 @@
 const { program } = require('commander')
 const inquirer = require('inquirer');
 const sites = require('./commands/sites');
-const acc = require('./commands/accounts');
+const installs = require('./commands/installs');
 
 program
     .command('sites')
@@ -13,6 +13,11 @@ program
     .command('accounts')
     .description('Accounts API Endpoint')
     .action(acc.accounts)
+
+program
+    .command('installs')
+    .description('Installs API Endpoint')
+    .action(installs.accounts)
 
 
 
