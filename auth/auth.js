@@ -43,15 +43,8 @@ const authorization = "Basic " + Buffer.from(WPENGINE_USER_ID + ":" + WPENGINE_P
     });
 }
 
-function fetchInstalls() {
-    fetch('https://api.wpengineapi.com/v1/installs?limit=10', {
-        method: 'GET',
-        headers: { 'Authorization': authorization },
-    })
-      .then(res => res.json())
-      .then(json => console.log(json));
-    
-    console.log("test");
+const signin = async () => {
+    // Add prompts here
 }
 
-module.exports = { setEnv, getEnv, fetchInstalls, authorization, WPENGINE_PASSWORD, WPENGINE_USER_ID };
+module.exports = { setEnv, getEnv, authorization, WPENGINE_PASSWORD, WPENGINE_USER_ID };
