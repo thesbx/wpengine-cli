@@ -4,6 +4,7 @@ const sites = require('./commands/sites');
 const installs = require('./commands/installs');
 const acc = require('./commands/accounts');
 const auth = require('./auth/auth');
+const ssh = require('./commands/ssh');
 
 // Auth command
 program
@@ -29,4 +30,14 @@ program
     .description('manage installs')
     .action(installs.installs)
 
-program.parse()
+// SSH command
+program
+    .command('ssh', 'manage ssh keys')
+
+program.action(() => {
+    program.help()
+})
+
+program.showSuggestionAfterError();
+
+program.parse(process.argv)

@@ -2,9 +2,9 @@
   "name": "grafik-cli",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "grafik.js",
   "scripts": {
-    "test": "node index.js"
+    "test": "node grafik.js"
   },
   "author": "Matt Miller",
   "license": "ISC",
@@ -18,6 +18,6 @@
     "node-fetch": "^3.0.0"
   },
   "bin": {
-    "grafik": "index.js"
+    "grafik": "grafik.js"
   }
 }
