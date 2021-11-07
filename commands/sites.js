@@ -58,7 +58,7 @@ const addSite = async (body) => {
         },
     })
     const data = await response.json();
-    console.log(data);
+    console.log("Site successfully created!", data);
 }
 
 function updateSite(id, {options}) {
