@@ -16,11 +16,11 @@ const authorization = "Basic " + Buffer.from(WPENGINE_USER_ID + ":" + WPENGINE_P
 
 
 function authenticated() {
-    if (getEnv('WPENGINE_USER_ID') === 'WPENGINE_USER_ID') {
+    if (getEnv('WPENGINE_USER_ID') && getEnv('WPENGINE_PASSWORD') ) {
         return true;
-    } else {
-        return false;
     }
+    
+    return false;
 }
 /**
  * 
@@ -38,20 +38,25 @@ function authenticated() {
  * //Function to set environment variables.
  */
 
- async function setEnv(key, value) {
-    fs.readFile(envPath, 'utf8', function (err, data) {
+ async function setEnv(creds) {
+    fs.readFile(envPath, 'utf8', function (err) {
         if (err) {
-            return console.warn(err);
+            fs.writeFile(envPath, creds, (err) => {
+                if (err) {
+                    console.log(err);
+                }
+            });
+        } else {
+            fs.writeFile(envPath, creds, (err) => {
+                if (err) {
+                    return console.log(err);
+                }
+            })
         }
-        const result = parse(data);
-        result[key] = value;
-        fs.appendFile(envPath, stringify(result), function (err) {
-            if (err) {
-                return console.log(err);
-            }
-        })
+
 
     });
+
 }
 
 async function register() {
@@ -60,18 +65,17 @@ async function register() {
             {
                 type: "input",
                 name: "account_id",
-                message: "Enter your account ID"
+                message: "Enter your API username"
             },
             {
                 type: "password",
                 name: "password",
-                message: "Enter your account password",
+                message: "Enter your API password",
                 mask: "*"
             }
         ])
         .then(async (answer) => {
-            await setEnv('WPENGINE_USER_ID', answer.account_id)
-            await setEnv('WPENGINE_PASSWORD', answer.password)
+            await setEnv(`WPENGINE_USER_ID=${answer.account_id}\nWPENGINE_PASSWORD=${answer.password}`);
             console.log('Credentials set!')
         })
         .catch((error) => {
@@ -96,7 +100,7 @@ const signin = async () => {
             ])
             .then((answer) => {
                 if (answer.reAuth) {
-                    console.log('Login again')
+                    register();
                 } else {
                     console.log('Enter a new command')
                 }
