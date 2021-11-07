@@ -5,6 +5,8 @@ const {
     stringify
 } = require('envfile');
 const envPath = '.env';
+const inquirer = require('inquirer');
+const chalk = require('chalk');
 const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
 
 const WPENGINE_PASSWORD = process.env.WPENGINE_PASSWORD;
@@ -12,7 +14,14 @@ const WPENGINE_USER_ID = process.env.WPENGINE_USER_ID;
 
 const authorization = "Basic " + Buffer.from(WPENGINE_USER_ID + ":" + WPENGINE_PASSWORD).toString('base64');
 
-const authenticated; // prevent unauthenticated users from using commands.
+
+function authenticated() {
+    if (getEnv('WPENGINE_USER_ID') === 'WPENGINE_USER_ID') {
+        return true;
+    } else {
+        return false;
+    }
+}
 /**
  * 
  * @param {string} key 
@@ -36,7 +45,7 @@ const authenticated; // prevent unauthenticated users from using commands.
         }
         const result = parse(data);
         result[key] = value;
-        fs.writeFile(envPath, stringify(result), function (err) {
+        fs.appendFile(envPath, stringify(result), function (err) {
             if (err) {
                 return console.log(err);
             }
@@ -45,9 +54,64 @@ const authenticated; // prevent unauthenticated users from using commands.
     });
 }
 
+async function register() {
+    inquirer
+        .prompt([
+            {
+                type: "input",
+                name: "account_id",
+                message: "Enter your account ID"
+            },
+            {
+                type: "password",
+                name: "password",
+                message: "Enter your account password",
+                mask: "*"
+            }
+        ])
+        .then(async (answer) => {
+            await setEnv('WPENGINE_USER_ID', answer.account_id)
+            await setEnv('WPENGINE_PASSWORD', answer.password)
+            console.log('Credentials set!')
+        })
+        .catch((error) => {
+            if (error.isTtyError) {
+              // Prompt couldn't be rendered in the current environment
+            } else {
+              // Something else went wrong
+            }
+        });
+}
+
 const signin = async () => {
     // Add prompts here
-    console.log('Testing signin');
+    if (authenticated()) {
+        inquirer
+            .prompt([
+                {
+                    type: 'confirm',
+                    name: "reAuth",
+                    message: chalk.blue("Would you like to re-authenticate?")
+                }
+            ])
+            .then((answer) => {
+                if (answer.reAuth) {
+                    console.log('Login again')
+                } else {
+                    console.log('Enter a new command')
+                }
+            })
+            .catch((error) => {
+                if (error.isTtyError) {
+                  // Prompt couldn't be rendered in the current environment
+                } else {
+                  // Something else went wrong
+                }
+            });
+    } else {
+        register();
+    } 
+    
 }
 
 module.exports = { signin, setEnv, getEnv, authorization, WPENGINE_PASSWORD, WPENGINE_USER_ID, authenticated };
