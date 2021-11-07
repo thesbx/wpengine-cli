@@ -16,5 +16,8 @@
     "envfile": "^6.17.0",
     "inquirer": "^8.2.0",
     "node-fetch": "^3.0.0"
+  },
+  "bin": {
+    "grafik": "index.js"
   }
 }

@@ -5,12 +5,12 @@ const {
     stringify
 } = require('envfile');
 const envPath = '.env';
-// const { exec } = require('child_process');
-const fetch = import('node-fetch');
+const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
+
 const WPENGINE_PASSWORD = process.env.WPENGINE_PASSWORD;
 const WPENGINE_USER_ID = process.env.WPENGINE_USER_ID;
 
-const authorization = "Basic " + Buffer.from(WPENGINE_USER_ID + ":" + WPENGINE_PASSWORD).toString('base64')
+const authorization = "Basic " + Buffer.from(WPENGINE_USER_ID + ":" + WPENGINE_PASSWORD).toString('base64');
 /**
  * 
  * @param {string} key 
@@ -54,4 +54,4 @@ function fetchInstalls() {
     console.log("test");
 }
 
-module.exports = {setEnv, getEnv, fetchInstalls};
+module.exports = { setEnv, getEnv, fetchInstalls, authorization, WPENGINE_PASSWORD, WPENGINE_USER_ID };
