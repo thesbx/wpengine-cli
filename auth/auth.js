@@ -47,4 +47,4 @@ const signin = async () => {
     // Add prompts here
 }
 
-module.exports = { setEnv, getEnv, authorization, WPENGINE_PASSWORD, WPENGINE_USER_ID };
+module.exports = { signin, setEnv, getEnv, authorization, WPENGINE_PASSWORD, WPENGINE_USER_ID };
