@@ -224,4 +224,4 @@ const sites = () => {
 
 
 
-module.exports = {sites};
+module.exports = { sites, getSites, addSite, getSiteById, updateSite };

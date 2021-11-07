@@ -44,4 +44,4 @@ const accounts = () => {
     )
  }
 
-module.exports = {accounts, listAccounts};
+module.exports = { accounts, listAccounts };

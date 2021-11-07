@@ -18,8 +18,12 @@ const listInstalls = async () => {
     return accounts;
 }
 
+const newInstall = async () => {
+
+}
+
 const installs = () => {
     // Add prompts here
 }
 
-module.exports = {installs, listInstalls};
+module.exports = { installs, listInstalls, newInstall };
