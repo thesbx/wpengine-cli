@@ -22,7 +22,10 @@ const getSites = async (limit) => {
         const json = await data.json();
         
         const sites = json.results.map(data => {
-            return data;
+            return {
+                name: data.name,
+                value: data.id
+            };
         })
         return sites;
     }
@@ -52,7 +55,7 @@ function deleteSite(id) {
 
 }
 
-const runInquirer = async () => {
+const runInquirer = () => {
     inquirer
     .prompt([
         {
@@ -88,11 +91,11 @@ const runInquirer = async () => {
                                     type: 'list',
                                     message: 'Select a site',
                                     name: 'siteList',
-                                    choices: data.name
+                                    choices: data
                                 }
                             ])
-                            .then((site) => {
-
+                            .then((siteId) => {
+                                console.log(siteId.siteList)
                             })
                             .catch((error) => {
                                 if (error.isTtyError) {
