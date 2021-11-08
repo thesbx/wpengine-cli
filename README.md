@@ -1,5 +1,12 @@
 # Grafik WP Engine CLI Interface
 
+- [Grafik WP Engine CLI Interface](#grafik-wp-engine-cli-interface)
+  - [How to use](#how-to-use)
+    - [Authentication](#authentication)
+    - [Sites](#sites)
+    - [Installs](#installs)
+    - [Accounts](#accounts)
+
 ## How to use
 
 ### Authentication
