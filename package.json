@@ -2,9 +2,9 @@
   "name": "grafik-cli",
   "version": "1.0.0",
   "description": "",
-  "main": "grafik.js",
+  "main": "gk.js",
   "scripts": {
-    "test": "node grafik.js"
+    "test": "node gk.js"
   },
   "author": "Matt Miller",
   "license": "ISC",
