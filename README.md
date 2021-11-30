@@ -9,7 +9,7 @@ This tool is still in development, feel free to fork and extend for your own nee
     - [Sites](#sites)
     - [Installs](#installs)
     - [Accounts](#accounts)
-      - [Roadmap](#roadmap)
+    - [Roadmap](#roadmap)
 
 ## How to use
 
@@ -47,7 +47,7 @@ You can view installs for specific sites or a verbose list.
 
 You can list the accounts you are associated with by using the ```accounts``` command.
 
-#### Roadmap
+### Roadmap
 
 - add bulk edit options. This could include options for updating WordPress users using wordpress cli
 - complete functionality
