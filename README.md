@@ -2,24 +2,26 @@
 
 - [Grafik WP Engine CLI Interface](#grafik-wp-engine-cli-interface)
   - [How to use](#how-to-use)
+    - [Setup](#setup)
     - [Authentication](#authentication)
     - [Sites](#sites)
     - [Installs](#installs)
     - [Accounts](#accounts)
+      - [Todo](#todo)
 
 ## How to use
 
 ### Setup
 
 1. clone this repo
-2. `cd grafik-cli`
+2. `cd wpengine-cli`
 3. `npm install -g`
 
 ### Authentication
 
 1. make sure API is enabled on your WP Engine account
 2. grab the API username and Password
-3. ```grafik auth``` will bring up a prompt to add credentials
+3. ```gk auth``` will bring up a prompt to add credentials
 4. enter the credentials from step 2.
 
 ### Sites

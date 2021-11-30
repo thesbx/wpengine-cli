@@ -18,6 +18,6 @@
     "node-fetch": "^3.0.0"
   },
   "bin": {
-    "gk": "grafik.js"
+    "gk": "gk.js"
   }
 }
