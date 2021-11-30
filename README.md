@@ -34,3 +34,7 @@ You can view installs for specific sites or a verbose list.
 ### Accounts
 
 You can list the accounts you are associated with by using the ```accounts``` command.
+
+#### Todo
+
+- add bulk edit options. This could include options for updating WordPress users using wordpress cli
