@@ -9,6 +9,12 @@
 
 ## How to use
 
+### Setup
+
+1. clone this repo
+2. `cd grafik-cli`
+3. `npm install -g`
+
 ### Authentication
 
 1. make sure API is enabled on your WP Engine account
