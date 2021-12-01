@@ -49,5 +49,5 @@ You can list the accounts you are associated with by using the ```accounts``` co
 
 ### Roadmap
 
-- add bulk edit options. This could include options for updating WordPress users using wordpress cli
-- complete functionality
+- [ ] add bulk edit options. This could include options for updating WordPress users using wordpress cli.
+- [ ] finish API integration.
