@@ -1,7 +1,7 @@
 {
-  "name": "grafik-cli",
+  "name": "wpengine-cli",
   "version": "1.0.0",
-  "description": "",
+  "description": "CLI to manage WP Engine accounts, installs and more.",
   "main": "gk.js",
   "scripts": {
     "test": "node gk.js"
