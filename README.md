@@ -1,4 +1,4 @@
-# Grafik WP Engine CLI Interface | Early Access
+# Grafik WP Engine CLI | Early Access
 
 This tool is still in development, feel free to fork and extend for your own needs. I plan on adding complete functionality to interface with the WP Engine API. Once that is complete I will extend the functionality.
 
