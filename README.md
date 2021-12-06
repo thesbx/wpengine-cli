@@ -2,7 +2,7 @@
 
 This tool is still in development, feel free to fork and extend for your own needs. I plan on adding complete functionality to interface with the WP Engine API. Once that is complete I will extend the functionality.
 
-- [Grafik WP Engine CLI Interface | Early Access](#grafik-wp-engine-cli-interface--early-access)
+- [Grafik WP Engine CLI | Early Access](#grafik-wp-engine-cli--early-access)
   - [How to use](#how-to-use)
     - [Setup](#setup)
     - [Authentication](#authentication)
@@ -37,6 +37,7 @@ The ```sites``` command provides an interface for various WP Engine site tasks
 3. list site by ID
 4. update sites
 5. delete sites
+6. list wp users
 
 ### Installs
 

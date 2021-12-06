@@ -1,3 +1,4 @@
+#! /usr/bin/env node
 const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
 const inquirer = require('inquirer');
 const auth = require('../auth/auth');

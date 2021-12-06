@@ -1,3 +1,4 @@
+#! /usr/bin/env node
 const { program } = require('commander')
 const ssh = require('./commands/ssh');
 

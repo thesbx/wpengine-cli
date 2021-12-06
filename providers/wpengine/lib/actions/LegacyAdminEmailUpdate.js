@@ -1,8 +1,8 @@
-import {WpEngineClient, WPEngineAccounts, WPEngineSites} from '../WpEngineClient.js'
+import {WpEngineClient, WPEngineAccounts, WPEngineSites} from '../WpEngineClient.js.js'
 import {execSync} from 'child_process'
 import ObjectsToCsv from 'objects-to-csv'
 
-export default async function LegacyAdminEmailUpdate(wpEngineAccounts, emailIndex) {
+export default async function LegacyAdminEmailUpdate(wpEngineAccounts, emailIndex, file) {
     const client = WpEngineClient({
         BASE_URL: process.env.BASE_URI,
         WPE_USERNAME: process.env.WPE_USERNAME,
@@ -52,6 +52,6 @@ export default async function LegacyAdminEmailUpdate(wpEngineAccounts, emailInde
 
     // connect to sites via ssh and get wp users using wpcli
     const csv = new ObjectsToCsv(parsed)
-    csv.toDisk('./data/2021creativeAccounts.csv', parsed)
-    console.log(`📗: successfully created .csv`);
+    csv.toDisk(file, parsed)
+    console.log(`📗: successfully created ${file}`);
 }
