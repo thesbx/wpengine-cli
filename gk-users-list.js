@@ -1,8 +1,8 @@
 #! /usr/bin/env node
-const { program } = require('commander')
-import { Users } from './commands/users'
+import { program } from 'commander'
+import Users from './commands/users.js'
 
 program
-    .action(Users.users())
+    .action(Users.users)
 
 program.parse(process.argv)

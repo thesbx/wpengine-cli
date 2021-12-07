@@ -3,7 +3,7 @@ import LegacyAdminEmailUpdate from './lib/actions/LegacyAdminEmailUpdate.js'
 dotenv.config()
 
 // constants
-export class WPE {
+export default class WPE {
     args = process.argv;
 
     fetchUsers = async (sites, ...emailIndex, file) => {

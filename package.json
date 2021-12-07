@@ -21,5 +21,6 @@
   },
   "bin": {
     "gk": "gk.js"
-  }
+  },
+  "type": "module"
 }

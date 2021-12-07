@@ -1,6 +1,8 @@
 #! /usr/bin/env node
-const { program } = require('commander')
-const ssh = require('./commands/ssh');
+import { program } from 'commander';
+import SSH from './commands/ssh.js';
+
+const ssh = new SSH();
 
 program
     .argument('[limit]', 'limit results')

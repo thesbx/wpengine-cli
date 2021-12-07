@@ -1,6 +1,6 @@
 #! /usr/bin/env node
-const { program } = require('commander')
-const chalk = require('chalk');
+import { program } from 'commander';
+import chalk from 'chalk';
 
 program
     .command('add', 'add an ssh key').alias('a')

@@ -1,13 +1,15 @@
 #! /usr/bin/env node
 const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
-import { WPE } from '../providers/wpengine/wpe';
-const inquirer = require('inquirer');
-const fs = require('fs');
+import WPE from '../providers/wpengine/wpe.js';
+import * as inquirer from 'inquirer';
+import * as fs from 'fs';
 
-export class Users {
+export default class Users {
+    wpe = new WPE();
+    constructor() {}
     
-    listUsers = async (sites, ...emailIndex, file) => {
-        WPE.fetchUsers(sites, ...emailIndex, file);
+    listUsers = async (sites, emailIndex, file) => {
+        this.wpe.fetchUsers(sites, emailIndex, file);
     }
     
     createFile = async (file) => {
@@ -19,7 +21,7 @@ export class Users {
         
     }
     
-    users = () => {
+    users = async () => {
         inquirer
         .prompt([
             {
@@ -29,7 +31,7 @@ export class Users {
             }
         ])
         .then((answers) => {
-            await createFile(answers.file);
+            createFile(answers.file);
         })
         .catch((error) => {
             if (error.isTtyError) {

@@ -1,9 +1,14 @@
 #! /usr/bin/env node
-const { program } = require('commander')
-const sites = require('./commands/sites');
-const installs = require('./commands/installs');
-const acc = require('./commands/accounts');
-const auth = require('./auth/auth');
+import { program } from 'commander';
+import Sites from './commands/sites.js';
+import Installs from './commands/installs.js';
+import Accounts from './commands/accounts.js';
+import Auth from './auth/auth.js';
+
+const auth = new Auth();
+const sites = new Sites();
+const accounts = new Accounts();
+const installs = new Installs();
 
 // Auth command
 program
@@ -21,7 +26,7 @@ program
 program
     .command('accounts')
     .description('manage accounts')
-    .action(acc.accounts)
+    .action(accounts.accounts)
 
 // Installs command
 program
