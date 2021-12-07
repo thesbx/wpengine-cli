@@ -4,6 +4,7 @@ import WPE from '../providers/wpengine/wpe.js';
 import Accounts from './accounts.js';
 import inquirer from 'inquirer';
 import * as fs from 'fs';
+import { homedir } from 'os';
 
 export default class Users {
     wpe = new WPE();
@@ -16,12 +17,15 @@ export default class Users {
         );
     }
     
-    createFile = async (file) => {
-        fs.open(`${file}`, 'w', (err, f) => {
+    createFile = async (name) => {
+        const file = `${homedir}/${name}.csv`
+        fs.writeFile(file, '', (err) => {
             if (err) {
-                throw err;
+                console.log(err)
             }
-            return f;
+            else {
+                console.log(`filecreated at ${file}`)
+            }
         });
         
     }
