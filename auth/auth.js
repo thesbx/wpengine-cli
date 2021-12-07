@@ -12,6 +12,11 @@ dotenv.config();
 import inquirer from 'inquirer';
 import chalk from 'chalk';
 
+/**
+ * Handles the logic for the auth CLI
+ * @class Auth
+ * @since 1.0.0
+ */
 export default class Auth {
 
     envPath = '.env';
@@ -25,6 +30,7 @@ export default class Auth {
     /**
      * Returns a boolean response to determine if the user has authenticated before or not.
      * @returns BOOLEAN
+     * @since 1.0.0
      */
     async authenticated() {
         if (this.getEnv('WPENGINE_USER_ID') && this.getEnv('WPENGINE_PASSWORD') ) {
@@ -38,6 +44,7 @@ export default class Auth {
      * Retrieves data from the environment variables.
      * @param {*} key 
      * @returns .env data
+     * @since 1.0.0
      */
      getEnv(key) {
         return process.env[key];
@@ -47,7 +54,7 @@ export default class Auth {
      * Sets environment variables.
      * @param {string} key 
      * @param {string} value 
-     * 
+     * @since 1.0.0
      */    
      async setEnv(creds) {
         readFile(this.envPath, 'utf8', function (err) {
@@ -72,6 +79,7 @@ export default class Auth {
     
     /**
      * Executes the registration CLI.
+     * @since 1.0.0
      */
     register = async () => {
         inquirer
@@ -118,6 +126,7 @@ export default class Auth {
     
     /**
      * Executes the signin CLI
+     * @since 1.0.0
      */
     signin = async () => {
         // Add prompts here

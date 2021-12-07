@@ -12,6 +12,7 @@ import Auth from '../auth/auth.js';
 /**
  * Handles the logic for the ssh CLI
  * @class SSH
+ * @since 1.0.0
  */
 export default class SSH {
 
@@ -22,7 +23,8 @@ export default class SSH {
     /**
      * fetches a list of SSH keys from users wpengine account
      * @param {*} limit 
-     * @returns 
+     * @returns
+     * @since 1.0.0
      */
     showKeys = async (limit) => {
         if (limit) {

@@ -13,6 +13,7 @@ import Auth from '../auth/auth.js';
 /**
  * Handles the logic for the accounts CLI
  * @class Accounts
+ * @since 1.0.0
  */
 export default class Accounts {
     auth = new Auth()
@@ -20,7 +21,8 @@ export default class Accounts {
     
     /**
      * fetch a list of accounts from the wpengine API
-     * @returns 
+     * @returns
+     * @since 1.0.0
      */
     listAccounts = async () => {
         const data = await fetch(`https://api.wpengineapi.com/v1/accounts`, {
@@ -39,6 +41,7 @@ export default class Accounts {
     
     /**
      * Executes the accounts CLI
+     * @since 1.0.0
      */
     accounts = () => {
         this.listAccounts().then(

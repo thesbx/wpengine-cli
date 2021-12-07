@@ -15,6 +15,7 @@ import { homedir } from 'os';
 /**
  * Handles the logic for the users CLI
  * @class Users
+ * @since 1.0.0
  */
 export default class Users {
     wpe = new WPE();
@@ -26,6 +27,7 @@ export default class Users {
      * Fetches a list of users.
      * @param {*} emailIndex 
      * @param {*} file 
+     * @since 1.0.0
      */
     listUsers = async (emailIndex, file) => {
         await this.accounts.listAccounts().then((accounts) =>
@@ -36,6 +38,7 @@ export default class Users {
     /**
      * Creates a file at the home directory of the users OS.
      * @param {*} name File Name
+     * @since 1.0.0
      */
     createFile = async (name) => {
         const file = `${homedir}/${name}.csv`
@@ -52,6 +55,7 @@ export default class Users {
     
     /**
      * Executes the users CLI
+     * @since 1.0.0
      */
     users = async () => {
         inquirer

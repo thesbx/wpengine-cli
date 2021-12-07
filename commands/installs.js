@@ -12,6 +12,7 @@ import Auth from '../auth/auth.js';
 /**
  * Handles the logic for the installs CLI
  * @class Installs
+ * @since 1.0.0
  */
 export default class Installs {
 
@@ -22,6 +23,7 @@ export default class Installs {
     /**
      * Fetches a list of WordPress installs in users wpengine accounts.
      * @returns Object
+     * @since 1.0.0
      */
     listInstalls = async () => {
         const data = await fetch(`https://api.wpengineapi.com/v1/installs`, {

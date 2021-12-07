@@ -15,6 +15,7 @@ import chalk from 'chalk';
 /**
  * Handles the logic for the sites CLI
  * @class Sites
+ * @since 1.0.0
  */
 export default class Sites {
 
@@ -27,6 +28,7 @@ export default class Sites {
      * Fetches a list of sites from users wpengine account
      * @param {*} limit 
      * @returns an object
+     * @since 1.0.0
      */
     getSites = async (limit) => {
         if (limit < 1) {
@@ -65,6 +67,7 @@ export default class Sites {
      * Fetches a site by its ID
      * @param {*} id 
      * @returns JSON
+     * @since 1.0.0
      */
     getSiteById = async (id) => {
         const data = await fetch(`https://api.wpengineapi.com/v1/sites/${id}`, {
@@ -77,7 +80,8 @@ export default class Sites {
     
     /**
      * Adds a site to the users wpengine account.
-     * @param {*} body 
+     * @param {*} body
+     * @since 1.0.0
      */
     addSite = async (body) => {
         const response = await fetch(`https://api.wpengineapi.com/v1/sites`, {
@@ -103,6 +107,7 @@ export default class Sites {
     
     /**
      * Executes the sites CLI.
+     * @since 1.0.0
      */
     sites = () => {
         if (this.auth.authenticated()) {
