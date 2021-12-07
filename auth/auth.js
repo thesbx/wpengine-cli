@@ -13,15 +13,19 @@ import * as inquirer from 'inquirer';
 import chalk from 'chalk';
 
 export default class Auth {
+
     envPath = '.env';
-    constructor() { }
-    
     WPENGINE_PASSWORD = process.env.WPENGINE_PASSWORD;
     WPENGINE_USER_ID = process.env.WPENGINE_USER_ID;
     
     authorization = "Basic " + Buffer.from(this.WPENGINE_USER_ID + ":" + this.WPENGINE_PASSWORD).toString('base64');
+
+    constructor() { }    
     
-    
+    /**
+     * Returns a boolean response to determine if the user has authenticated before or not.
+     * @returns BOOLEAN
+     */
     async authenticated() {
         if (this.getEnv('WPENGINE_USER_ID') && this.getEnv('WPENGINE_PASSWORD') ) {
             return true;
@@ -29,22 +33,22 @@ export default class Auth {
         
         return false;
     }
+
     /**
-     * 
-     * @param {string} key 
-     * //Function to get value from env
+     * Retrieves data from the environment variables.
+     * @param {*} key 
+     * @returns .env data
      */
      getEnv(key) {
         return process.env[key];
     }
     
     /**
-     * 
+     * Sets environment variables.
      * @param {string} key 
      * @param {string} value 
-     * //Function to set environment variables.
-     */
-    
+     * 
+     */    
      async setEnv(creds) {
         readFile(this.envPath, 'utf8', function (err) {
             if (err) {
@@ -66,7 +70,10 @@ export default class Auth {
     
     }
     
-    async register() {
+    /**
+     * Executes the registration CLI.
+     */
+    register = async () => {
         inquirer
         .prompt([
                 {
@@ -109,6 +116,9 @@ export default class Auth {
             });
     }
     
+    /**
+     * Executes the signin CLI
+     */
     signin = async () => {
         // Add prompts here
         if (this.authenticated()) {
@@ -122,7 +132,7 @@ export default class Auth {
                 ])
                 .then((answer) => {
                     if (answer.reAuth) {
-                        register();
+                        this.register
                     } else {
                         console.log('Enter a new command')
                     }
@@ -135,7 +145,7 @@ export default class Auth {
                     }
                 });
         } else {
-            register();
+            this.register
         } 
         
     }

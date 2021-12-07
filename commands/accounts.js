@@ -10,6 +10,10 @@ import fetch from 'node-fetch';
 import inquirer from 'inquirer';
 import Auth from '../auth/auth.js';
 
+/**
+ * Handles the logic for the accounts CLI
+ * @class Accounts
+ */
 export default class Accounts {
     auth = new Auth()
     constructor() {}
@@ -34,7 +38,7 @@ export default class Accounts {
     }
     
     /**
-     * run inquirer to manage accounts CLI
+     * Executes the accounts CLI
      */
     accounts = () => {
         this.listAccounts().then(

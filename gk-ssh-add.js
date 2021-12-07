@@ -12,4 +12,4 @@ import SSH from './commands/ssh.js';
 const ssh = new SSH();
 
 program
-    .action(SSH.addKeys)
+    .action(ssh.addKeys)

@@ -51,7 +51,7 @@ export default class Users {
     }
     
     /**
-     * Runs the users CLI
+     * Executes the users CLI
      */
     users = async () => {
         inquirer

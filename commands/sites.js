@@ -12,11 +12,22 @@ import Auth from '../auth/auth.js';
 import Accounts from '../commands/accounts.js';
 import chalk from 'chalk';
 
+/**
+ * Handles the logic for the sites CLI
+ * @class Sites
+ */
 export default class Sites {
+
     auth = new Auth()
     accounts = new Accounts()
+
     constructor() {}
     
+    /**
+     * Fetches a list of sites from users wpengine account
+     * @param {*} limit 
+     * @returns an object
+     */
     getSites = async (limit) => {
         if (limit < 1) {
             const data = await fetch(`https://api.wpengineapi.com/v1/sites`, {
@@ -50,9 +61,11 @@ export default class Sites {
         console.log('something went wrong')
     }
     
-    
-    
-    
+    /**
+     * Fetches a site by its ID
+     * @param {*} id 
+     * @returns JSON
+     */
     getSiteById = async (id) => {
         const data = await fetch(`https://api.wpengineapi.com/v1/sites/${id}`, {
             method: 'GET',
@@ -62,6 +75,10 @@ export default class Sites {
         return json;
     }
     
+    /**
+     * Adds a site to the users wpengine account.
+     * @param {*} body 
+     */
     addSite = async (body) => {
         const response = await fetch(`https://api.wpengineapi.com/v1/sites`, {
             method: 'POST',
@@ -84,7 +101,9 @@ export default class Sites {
     
     }
     
-    
+    /**
+     * Executes the sites CLI.
+     */
     sites = () => {
         if (this.auth.authenticated()) {
             inquirer

@@ -9,10 +9,20 @@
 import fetch from 'node-fetch';
 import Auth from '../auth/auth.js';
 
+/**
+ * Handles the logic for the installs CLI
+ * @class Installs
+ */
 export default class Installs {
+
     auth = new Auth()
+
     constructor() {}
     
+    /**
+     * Fetches a list of WordPress installs in users wpengine accounts.
+     * @returns Object
+     */
     listInstalls = async () => {
         const data = await fetch(`https://api.wpengineapi.com/v1/installs`, {
             method: 'GET',
