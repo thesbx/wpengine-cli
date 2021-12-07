@@ -1,13 +1,13 @@
 {
   "name": "@thesbx/wpengine-cli",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "CLI to manage WP Engine accounts, installs and more.",
   "main": "wpe.js",
   "scripts": {
     "test": "node wpe.js"
   },
   "author": "Matt Miller",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "axios": "^0.24.0",
     "chalk": "^4.1.2",
