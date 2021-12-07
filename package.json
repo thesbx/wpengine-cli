@@ -1,5 +1,5 @@
 {
-  "name": "wpengine-cli",
+  "name": "@thesbx/wpengine-cli",
   "version": "1.0.0",
   "description": "CLI to manage WP Engine accounts, installs and more.",
   "main": "gk.js",
@@ -22,5 +22,12 @@
   "bin": {
     "gk": "gk.js"
   },
-  "type": "module"
+  "type": "module",
+  "publishConfig": {
+    "registry":"https://npm.pkg.github.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/thesbx/wpengine-cli.git"
+  }
 }
