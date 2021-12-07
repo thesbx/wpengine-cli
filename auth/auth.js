@@ -7,6 +7,7 @@
  */
 
 import { readFile, writeFile } from 'fs';
+import { validate as uuidValidate } from 'uuid';
 import dotenv from 'dotenv';
 dotenv.config();
 import inquirer from 'inquirer';
@@ -32,22 +33,9 @@ export default class Auth {
      * @returns BOOLEAN
      * @since 1.0.0
      */
-    async authenticated() {
-        if (this.getEnv('WPENGINE_USER_ID') && this.getEnv('WPENGINE_PASSWORD') ) {
-            return true;
-        }
-        
-        return false;
-    }
-
-    /**
-     * Retrieves data from the environment variables.
-     * @param {*} key 
-     * @returns .env data
-     * @since 1.0.0
-     */
-     getEnv(key) {
-        return process.env[key];
+    authenticated() {
+        const valid = uuidValidate(this.WPENGINE_USER_ID)
+        return valid;
     }
     
     /**
