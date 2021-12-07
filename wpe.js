@@ -3,7 +3,7 @@
  * @package WPE CLI
  * @author thesbx
  * @license MIT
- * @version 1.0.5
+ * @version 1.0.6
  */
 
 import { program } from 'commander';
