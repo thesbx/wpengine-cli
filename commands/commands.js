@@ -17,6 +17,7 @@ export default class Commands {
 
     auth;
     wpe;
+    
     constructor() {
         this.auth = new Auth()
         this.wpe = new WPE()

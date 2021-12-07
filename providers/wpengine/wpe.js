@@ -2,9 +2,11 @@ import dotenv from 'dotenv'
 import LegacyAdminEmailUpdate from './lib/actions/LegacyAdminEmailUpdate.js'
 dotenv.config()
 
-// constants
+/**
+ * Handles wpengine logic
+ * @class WPE
+ */
 export default class WPE {
-    args = process.argv;
 
     fetchUsers = async (sites, emailIndex, file) => {
         try {
