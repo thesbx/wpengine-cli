@@ -24,8 +24,8 @@ Description:
 List will generate a .csv of all users matching specifc arguments.
 
 Example usage:
-${chalk.green('grafik users add')}
-${chalk.green('grafik users list')}
+${chalk.green('wpe users add')}
+${chalk.green('wpe users list')}
 `)
 
 program.parse(process.argv)
