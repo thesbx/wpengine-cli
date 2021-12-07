@@ -4,7 +4,13 @@
   "description": "CLI to manage WP Engine accounts, installs and more.",
   "main": "wpe.js",
   "scripts": {
-    "test": "node wpe.js"
+    "wpe": "node wpe.js",
+    "auth": "node wpe.js auth",
+    "sites": "node wpe.js sites",
+    "accounts": "node wpe.js accounts",
+    "installs": "node wpe.js installs",
+    "ssh": "node wpe.js ssh",
+    "user": "node wpe.js user"
   },
   "author": "Matt Miller",
   "license": "MIT",
