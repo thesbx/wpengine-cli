@@ -57,15 +57,15 @@ export default class Auth {
      * @since 1.0.0
      */    
      async setEnv(creds) {
-        readFile(this.envPath, 'utf8', function (err) {
+        readFile('.env', 'utf8', function (err) {
             if (err) {
-                writeFile(this.envPath, creds, (err) => {
+                writeFile('.env', creds, (err) => {
                     if (err) {
                         console.log(err);
                     }
                 });
             } else {
-                writeFile(this.envPath, creds, (err) => {
+                writeFile('.env', creds, (err) => {
                     if (err) {
                         return console.log(err);
                     }
@@ -84,44 +84,44 @@ export default class Auth {
     register = async () => {
         inquirer
         .prompt([
-                {
-                    type: "input",
-                    name: "account_id",
-                    message: "Enter your API username",
-                    validate(value) {
-                        const pass = value.match(
-                            /([0-9A-Z]{8})(-)([0-9A-F]{4})(-)([0-9A-Z]{4})(-)([0-9A-Z]{4})(-)([0-9A-Z]{12})/i
-                        );
-                        if (pass) {
-                          return true;
-                        }
-                    
-                        return 'Please enter a valid username';
-                    },
+            {
+                type: "input",
+                name: "account_id",
+                message: "Enter your API username",
+                validate(value) {
+                    const pass = value.match(
+                        /([0-9A-Z]{8})(-)([0-9A-F]{4})(-)([0-9A-Z]{4})(-)([0-9A-Z]{4})(-)([0-9A-Z]{12})/i
+                    );
+                    if (pass) {
+                      return true;
+                    }
+                
+                    return 'Please enter a valid username';
                 },
-                {
-                    type: "password",
-                    name: "password",
-                    message: "Enter your API password",
-                    mask: "*"
-                },
-                {
-                    type: "input",
-                    name: "ssh",
-                    message: "Enter the path to your public ssh key."
-                }
-            ])
-            .then(async (answer) => {
-                await this.setEnv(`WPENGINE_USER_ID=${answer.account_id}\nWPENGINE_PASSWORD=${answer.password}\nSSH_PATH=${answer.ssh}`);
-                console.log('Credentials set!')
-            })
-            .catch((error) => {
-                if (error.isTtyError) {
-                  // Prompt couldn't be rendered in the current environment
-                } else {
-                  // Something else went wrong
-                }
-            });
+            },
+            {
+                type: "password",
+                name: "password",
+                message: "Enter your API password",
+                mask: "*"
+            },
+            {
+                type: "input",
+                name: "ssh",
+                message: "Enter the path to your public ssh key."
+            }
+        ])
+        .then(async (answer) => {
+            await this.setEnv(`WPENGINE_USER_ID=${answer.account_id}\nWPENGINE_PASSWORD=${answer.password}\nSSH_PATH=${answer.ssh}`);
+            console.log('Credentials set!')
+        })
+        .catch((error) => {
+            if (error.isTtyError) {
+              // Prompt couldn't be rendered in the current environment
+            } else {
+              // Something else went wrong
+            }
+        });
     }
     
     /**
@@ -141,7 +141,7 @@ export default class Auth {
                 ])
                 .then((answer) => {
                     if (answer.reAuth) {
-                        this.register
+                        this.register()
                     } else {
                         console.log('Enter a new command')
                     }
@@ -154,7 +154,7 @@ export default class Auth {
                     }
                 });
         } else {
-            this.register
+            this.register()
         } 
         
     }
