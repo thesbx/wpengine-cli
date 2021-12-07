@@ -4,22 +4,21 @@ This tool is still in development, feel free to fork and extend for your own nee
 
 - [wpengine CLI | Early Access](#wpengine-cli--early-access)
   - [How to use](#how-to-use)
-    - [Setup](#setup)
+    - [Installation](#installation)
     - [Authentication](#authentication)
     - [Sites](#sites)
     - [Installs](#installs)
     - [Accounts](#accounts)
     - [Roadmap](#roadmap)
+    - [Notes](#notes)
 
 ## How to use
 
-### Setup
+### Installation
 
 For debugging you can rename `.env.sample` to `.env` and update the variables. The tool will automatically overwrite the file with you run the `auth` command.
 
-1. clone this repo
-2. `cd wpengine-cli`
-3. `npm install -g`
+1. `npm install @thesbx/wpengine-cli@1.0.2`
 
 ### Authentication
 
@@ -52,3 +51,7 @@ You can list the accounts you are associated with by using the ```accounts``` co
 
 - [ ] add bulk edit options. This could include options for updating WordPress users using wordpress cli.
 - [ ] finish API integration.
+
+### Notes
+
+- The users CLI will write a .csv file to your OS home directory
