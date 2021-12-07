@@ -20,14 +20,17 @@ For debugging you can rename `.env.sample` to `.env` and update the variables. T
 
 1. Clone this repository
 2. `cd wpengine-cli`
-3. `npm install -g`
+3. `npm install` -- installs dependencies
+4. `npm install -g` -- allows use of `wpe` command globally
 
 ### Authentication
 
 1. make sure API is enabled on your WP Engine account
 2. grab the API username and Password
 3. ```wpe auth``` will bring up a prompt to add credentials
-4. enter the credentials from step 2.
+4. you will need to have an ssh key added in order to use some features
+   - you can optionally set the ssh path
+   - `wpe users list` will not run without a valid key
 
 ### Sites
 
