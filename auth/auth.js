@@ -9,7 +9,7 @@
 import { readFile, writeFile } from 'fs';
 import dotenv from 'dotenv';
 dotenv.config();
-import * as inquirer from 'inquirer';
+import inquirer from 'inquirer';
 import chalk from 'chalk';
 
 export default class Auth {
