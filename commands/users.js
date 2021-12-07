@@ -1,22 +1,42 @@
 #! /usr/bin/env node
-const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
+/**
+ * @package WPE CLI
+ * @author Matt Miller
+ * @license MIT
+ *
+ */
+
 import WPE from '../providers/wpengine/wpe.js';
 import Accounts from './accounts.js';
 import inquirer from 'inquirer';
 import * as fs from 'fs';
 import { homedir } from 'os';
 
+/**
+ * Handles the logic for the users CLI
+ * @class Users
+ */
 export default class Users {
     wpe = new WPE();
     accounts = new Accounts();
+
     constructor() {}
     
+    /**
+     * Fetches a list of users.
+     * @param {*} emailIndex 
+     * @param {*} file 
+     */
     listUsers = async (emailIndex, file) => {
         await this.accounts.listAccounts().then((accounts) =>
             this.wpe.fetchUsers(accounts, emailIndex, file)
         );
     }
     
+    /**
+     * Creates a file at the home directory of the users OS.
+     * @param {*} name File Name
+     */
     createFile = async (name) => {
         const file = `${homedir}/${name}.csv`
         fs.writeFile(file, '', (err) => {
@@ -30,6 +50,9 @@ export default class Users {
         
     }
     
+    /**
+     * Runs the users CLI
+     */
     users = async () => {
         inquirer
         .prompt([

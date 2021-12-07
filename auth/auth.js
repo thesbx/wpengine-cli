@@ -1,13 +1,19 @@
 #! /usr/bin/env node
+/**
+ * @package WPE CLI
+ * @author Matt Miller
+ * @license MIT
+ *
+ */
+
 import { readFile, writeFile } from 'fs';
 import dotenv from 'dotenv';
 dotenv.config();
-const envPath = '.env';
 import * as inquirer from 'inquirer';
 import chalk from 'chalk';
 
 export default class Auth {
-
+    envPath = '.env';
     constructor() { }
     
     WPENGINE_PASSWORD = process.env.WPENGINE_PASSWORD;
@@ -40,15 +46,15 @@ export default class Auth {
      */
     
      async setEnv(creds) {
-        readFile(envPath, 'utf8', function (err) {
+        readFile(this.envPath, 'utf8', function (err) {
             if (err) {
-                writeFile(envPath, creds, (err) => {
+                writeFile(this.envPath, creds, (err) => {
                     if (err) {
                         console.log(err);
                     }
                 });
             } else {
-                writeFile(envPath, creds, (err) => {
+                writeFile(this.envPath, creds, (err) => {
                     if (err) {
                         return console.log(err);
                     }

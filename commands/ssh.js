@@ -1,5 +1,12 @@
 #! /usr/bin/env node
-const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
+/**
+ * @package WPE CLI
+ * @author Matt Miller
+ * @license MIT
+ *
+ */
+
+import fetch from 'node-fetch';
 import Auth from '../auth/auth.js';
 
 export default class SSH {

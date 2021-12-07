@@ -1,4 +1,11 @@
 #! /usr/bin/env node
+/**
+ * @package WPE CLI
+ * @author Matt Miller
+ * @license MIT
+ *
+ */
+
 import { program } from 'commander';
 import Sites from './commands/sites.js';
 import Installs from './commands/installs.js';
