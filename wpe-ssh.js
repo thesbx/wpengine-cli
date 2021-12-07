@@ -1,7 +1,7 @@
 #! /usr/bin/env node
 /**
  * @package WPE CLI
- * @author Matt Miller
+ * @author thesbx
  * @license MIT
  *
  */
@@ -21,8 +21,8 @@ program.action(() => {
 
 program.addHelpText('after', `
 Example usage:
-${chalk.green('grafik ssh add')}
-${chalk.green('grafik ssh list')}
+${chalk.green('wpe ssh add')}
+${chalk.green('wpe ssh list')}
 `)
 
 program.parse(process.argv)

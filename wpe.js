@@ -1,9 +1,9 @@
 #! /usr/bin/env node
 /**
  * @package WPE CLI
- * @author Matt Miller
+ * @author thesbx
  * @license MIT
- *
+ * @version 1.0.1
  */
 
 import { program } from 'commander';
