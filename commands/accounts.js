@@ -8,7 +8,7 @@
 
 import fetch from 'node-fetch';
 import inquirer from 'inquirer';
-import Commands from '../commands/commands.js';
+import {Commands} from '../commands/commands.js';
 
 /**
  * Handles the logic for the accounts CLI

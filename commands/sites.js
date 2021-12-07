@@ -8,7 +8,7 @@
 
 import fetch from 'node-fetch';
 import inquirer from 'inquirer';
-import Commands from '../commands/commands.js';
+import {Commands} from '../commands/commands.js';
 import {Accounts} from '../commands/accounts.js';
 import chalk from 'chalk';
 

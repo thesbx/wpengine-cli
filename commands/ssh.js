@@ -7,7 +7,7 @@
  */
 
 import fetch from 'node-fetch';
-import Commands from '../commands/commands.js';
+import {Commands} from '../commands/commands.js';
 
 /**
  * Handles the logic for the ssh CLI
