@@ -8,8 +8,8 @@
 
 import fetch from 'node-fetch';
 import inquirer from 'inquirer';
-import Auth from '../auth/auth.js';
-import Accounts from '../commands/accounts.js';
+import Commands from '../commands/commands.js';
+import {Accounts} from '../commands/accounts.js';
 import chalk from 'chalk';
 
 /**
@@ -17,12 +17,9 @@ import chalk from 'chalk';
  * @class Sites
  * @since 1.0.0
  */
-export default class Sites {
-
-    auth = new Auth()
+export class Sites extends Commands {
+    
     accounts = new Accounts()
-
-    constructor() {}
     
     /**
      * Fetches a list of sites from users wpengine account

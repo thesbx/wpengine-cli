@@ -7,18 +7,14 @@
  */
 
 import fetch from 'node-fetch';
-import Auth from '../auth/auth.js';
+import Commands from '../commands/commands.js';
 
 /**
  * Handles the logic for the ssh CLI
  * @class SSH
  * @since 1.0.0
  */
-export default class SSH {
-
-    auth = new Auth()
-
-    constructor() {}
+export class SSH extends Commands {
     
     /**
      * fetches a list of SSH keys from users wpengine account
@@ -27,7 +23,7 @@ export default class SSH {
      * @since 1.0.0
      */
     showKeys = async (limit) => {
-        if (limit) {
+        if (limit > 0) {
             const data = await fetch(`https://api.wpengineapi.com/v1/ssh_keys?limit=${limit}`, {
                 method: 'GET',
                 headers: { 'Authorization': this.auth.authorization },

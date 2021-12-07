@@ -7,18 +7,14 @@
  */
 
 import fetch from 'node-fetch';
-import Auth from '../auth/auth.js';
+import Commands from '../commands/commands.js';
 
 /**
  * Handles the logic for the installs CLI
  * @class Installs
  * @since 1.0.0
  */
-export default class Installs {
-
-    auth = new Auth()
-
-    constructor() {}
+export class Installs extends Commands {
     
     /**
      * Fetches a list of WordPress installs in users wpengine accounts.

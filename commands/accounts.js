@@ -8,16 +8,14 @@
 
 import fetch from 'node-fetch';
 import inquirer from 'inquirer';
-import Auth from '../auth/auth.js';
+import Commands from '../commands/commands.js';
 
 /**
  * Handles the logic for the accounts CLI
  * @class Accounts
  * @since 1.0.0
  */
-export default class Accounts {
-    auth = new Auth()
-    constructor() {}
+export class Accounts extends Commands {
     
     /**
      * fetch a list of accounts from the wpengine API

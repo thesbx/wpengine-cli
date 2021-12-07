@@ -7,9 +7,9 @@
  */
 
 import { program } from 'commander';
-import Sites from './commands/sites.js';
-import Installs from './commands/installs.js';
-import Accounts from './commands/accounts.js';
+import {Sites} from './commands/sites.js';
+import {Installs} from './commands/installs.js';
+import {Accounts} from './commands/accounts.js';
 import Auth from './auth/auth.js';
 
 const auth = new Auth();

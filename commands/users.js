@@ -6,7 +6,7 @@
  *
  */
 
-import WPE from '../providers/wpengine/wpe.js';
+import Commands from './commands/commands.js'
 import Accounts from './accounts.js';
 import inquirer from 'inquirer';
 import * as fs from 'fs';
@@ -17,11 +17,9 @@ import { homedir } from 'os';
  * @class Users
  * @since 1.0.0
  */
-export default class Users {
-    wpe = new WPE();
-    accounts = new Accounts();
+export class Users extends Commands {
 
-    constructor() {}
+    accounts = new Accounts();
     
     /**
      * Fetches a list of users.
