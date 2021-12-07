@@ -1,7 +1,7 @@
 #! /usr/bin/env node
 /**
  * @package WPE CLI
- * @author Matt Miller
+ * @author thesbx
  * @license MIT
  *
  */
