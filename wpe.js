@@ -18,6 +18,7 @@ const sites = new Sites();
 const accounts = new Accounts();
 const installs = new Installs();
 
+
 // Auth command
 program
     .command('auth')

@@ -13,11 +13,11 @@ import WPE from '../providers/wpengine/wpe.js';
  * @class Commands
  * @since 1.0.7
  */
-export default class Commands {
+export class Commands {
 
     auth;
     wpe;
-    
+
     constructor() {
         this.auth = new Auth()
         this.wpe = new WPE()
