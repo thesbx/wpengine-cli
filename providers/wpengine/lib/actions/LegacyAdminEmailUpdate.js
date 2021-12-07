@@ -1,12 +1,12 @@
-import {WpEngineClient, WPEngineAccounts, WPEngineSites} from '../WpEngineClient.js.js'
+import {WpEngineClient, WPEngineAccounts, WPEngineSites} from '../WpEngineClient.js'
 import {execSync} from 'child_process'
 import ObjectsToCsv from 'objects-to-csv'
 
 export default async function LegacyAdminEmailUpdate(wpEngineAccounts, emailIndex, file) {
     const client = WpEngineClient({
-        BASE_URL: process.env.BASE_URI,
-        WPE_USERNAME: process.env.WPE_USERNAME,
-        WPE_PASSWORD: process.env.WPE_PASSWORD
+        BASE_URL: 'https://api.wpengineapi.com/v1/',
+        WPE_USERNAME: process.env.WPENGINE_USER_ID,
+        WPE_PASSWORD: process.env.WPENGINE_PASSWORD
     })
 
     // 'synergema'

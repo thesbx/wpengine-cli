@@ -83,10 +83,15 @@ export default class Auth {
                     name: "password",
                     message: "Enter your API password",
                     mask: "*"
+                },
+                {
+                    type: "input",
+                    name: "ssh",
+                    message: "Enter the path to your public ssh key."
                 }
             ])
             .then(async (answer) => {
-                await this.setEnv(`WPENGINE_USER_ID=${answer.account_id}\nWPENGINE_PASSWORD=${answer.password}`);
+                await this.setEnv(`WPENGINE_USER_ID=${answer.account_id}\nWPENGINE_PASSWORD=${answer.password}\nSSH_PATH=${answer.ssh}`);
                 console.log('Credentials set!')
             })
             .catch((error) => {

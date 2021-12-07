@@ -2,7 +2,9 @@
 import { program } from 'commander'
 import Users from './commands/users.js'
 
+const users = new Users();
+
 program
-    .action(Users.users)
+    .action(users.users)
 
 program.parse(process.argv)

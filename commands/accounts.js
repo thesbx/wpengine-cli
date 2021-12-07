@@ -17,7 +17,6 @@ export default class Accounts {
             headers: { 'Authorization': this.auth.authorization },
         })
         const json = await data.json();
-    
         const accounts = json.results.map(data => {
             return {
                 name: data.name,
