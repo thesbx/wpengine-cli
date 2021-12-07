@@ -18,7 +18,7 @@ This tool is still in development, feel free to fork and extend for your own nee
 
 For debugging you can rename `.env.sample` to `.env` and update the variables. The tool will automatically overwrite the file with you run the `auth` command.
 
-1. `npm install @thesbx/wpengine-cli@1.0.2`
+1. `npm install -g @thesbx/wpengine-cli@1.0.2`
 
 ### Authentication
 
