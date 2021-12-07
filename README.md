@@ -1,8 +1,8 @@
-# Grafik WP Engine CLI | Early Access
+# wpengine CLI | Early Access
 
-This tool is still in development, feel free to fork and extend for your own needs. I plan on adding complete functionality to interface with the WP Engine API. Once that is complete I will extend the functionality.
+This tool is still in development, feel free to fork and extend for your own needs. I plan on adding complete functionality to interface with the wpengine API. Once that is complete I will extend the functionality.
 
-- [Grafik WP Engine CLI | Early Access](#grafik-wp-engine-cli--early-access)
+- [wpengine CLI | Early Access](#wpengine-cli--early-access)
   - [How to use](#how-to-use)
     - [Setup](#setup)
     - [Authentication](#authentication)
@@ -25,7 +25,7 @@ For debugging you can rename `.env.sample` to `.env` and update the variables. T
 
 1. make sure API is enabled on your WP Engine account
 2. grab the API username and Password
-3. ```gk auth``` will bring up a prompt to add credentials
+3. ```wpe auth``` will bring up a prompt to add credentials
 4. enter the credentials from step 2.
 
 ### Sites
