@@ -6,7 +6,6 @@ This tool is still in development, feel free to fork and extend for your own nee
   - [How to use](#how-to-use)
     - [Installation](#installation)
       - [Manual installation](#manual-installation)
-      - [Install via GitHub Packages](#install-via-github-packages)
     - [Authentication](#authentication)
     - [Sites](#sites)
     - [Installs](#installs)
@@ -27,11 +26,6 @@ For debugging you can rename `.env.sample` to `.env` and update the variables. T
 2. `cd wpengine-cli`
 3. `npm install` -- installs dependencies
 4. `npm install -g` -- allows use of `wpe` command globally
-
-#### Install via GitHub Packages
-
-1. Set your npm registry to GitHub by running `npm config set registry <registry url>`
-2. `npm install -g @thesbx/wpengine-cli@<version>`
 
 ### Authentication
 
