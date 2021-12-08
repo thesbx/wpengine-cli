@@ -2,9 +2,9 @@
   "name": "@thesbx/wpengine-cli",
   "version": "1.0.8",
   "description": "CLI to manage WP Engine accounts, installs and more.",
-  "main": "wpe.js",
+  "main": "./src/wpe.js",
   "scripts": {
-    "wpe": "node wpe.js",
+    "wpe": "node ./src/wpe.js",
     "auth": "node wpe.js auth",
     "sites": "node wpe.js sites",
     "accounts": "node wpe.js accounts",
@@ -27,14 +27,11 @@
     "uuid": "^8.3.2"
   },
   "bin": {
-    "wpe": "wpe.js"
+    "wpe": "./src/wpe.js"
   },
   "type": "module",
   "publishConfig": {
     "registry": "https://npm.pkg.github.com"
   },
-  "repository": "git://github.com/thesbx/wpengine-cli.git",
-  "devDependencies": {
-    "typescript": "^4.5.2"
-  }
+  "repository": "git://github.com/thesbx/wpengine-cli.git"
 }

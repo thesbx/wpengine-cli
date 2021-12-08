@@ -7,7 +7,7 @@
  */
 
 import { program } from 'commander'
-import Users from './commands/users.js'
+import {Users} from './commands/users.js'
 
 const users = new Users();
 
