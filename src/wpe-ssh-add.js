@@ -7,7 +7,7 @@
  */
 
 import { program } from 'commander';
-import SSH from './commands/ssh.js';
+import {SSH} from '../commands/ssh.js';
 
 const ssh = new SSH();
 
