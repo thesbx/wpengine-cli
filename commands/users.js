@@ -7,7 +7,7 @@
  */
 
 import {Commands} from './commands/commands.js'
-import Accounts from './accounts.js';
+import {Accounts} from './accounts.js';
 import inquirer from 'inquirer';
 import * as fs from 'fs';
 import { homedir } from 'os';
