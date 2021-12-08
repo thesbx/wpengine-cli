@@ -1,6 +1,6 @@
 {
   "name": "@thesbx/wpengine-cli",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "CLI to manage WP Engine accounts, installs and more.",
   "main": "wpe.js",
   "scripts": {
