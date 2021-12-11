@@ -9,6 +9,10 @@
 import { program } from 'commander';
 import chalk from 'chalk';
 
+
+program
+    .command('cli', 'run the CLI for managing ssh keys')
+
 program
     .command('add', 'add an ssh key').alias('a')
     
@@ -21,6 +25,7 @@ program.action(() => {
 
 program.addHelpText('after', `
 Example usage:
+${chalk.green('wpe ssh cli')}
 ${chalk.green('wpe ssh add')}
 ${chalk.green('wpe ssh list')}
 `)

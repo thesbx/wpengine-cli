@@ -96,7 +96,8 @@ export default class Auth {
             {
                 type: "input",
                 name: "ssh",
-                message: "Enter the path to your public ssh key."
+                message: "Enter the path to your public ssh key.",
+                default: '~/.ssh/id_rsa'
             }
         ])
         .then(async (answer) => {
