@@ -57,7 +57,8 @@ export class SSH extends Commands {
     
     /**
      * Adds a public key to your wpengine.com account
-     * @param {*} key 
+     * @param {*} key
+     * @since 1.1.0
      */
     addKey = async (key) => {
         const data = await fetch(`https://api.wpengineapi.com/v1/ssh_keys`, {
@@ -77,7 +78,8 @@ export class SSH extends Commands {
 
     /**
      * Removes a public key from your wpengine.com account
-     * @param {*} key 
+     * @param {*} key
+     * @since 1.1.0
      */
     deleteKey = async (key) => {
         const data = await fetch(`https://api.wpengineapi.com/v1/ssh_keys`, {
@@ -91,6 +93,10 @@ export class SSH extends Commands {
         console.log("Successfully deleted your public SSH key", response);
     }
     
+    /**
+     * Executes the ssh CLI.
+     * @since 
+     */
     ssh = () => {
             
     }
