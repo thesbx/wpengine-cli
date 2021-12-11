@@ -23,36 +23,20 @@ export class SSH extends Commands {
      * @returns
      * @since 1.0.0
      */
-    getKeys = async (limit) => {
-        if (limit > 0) {
-            const data = await fetch(`https://api.wpengineapi.com/v1/ssh_keys?limit=${limit}`, {
-                method: 'GET',
-                headers: { 'Authorization': this.auth.authorization },
-            })
-            const json = await data.json();
-            const keys = json.results.map(data => {
-                return {
-                    name: data.comment,
-                    value: data.uuid
-                };
-            })
-            console.log(keys);
-            return keys;
-        } else {
-            const data = await fetch(`https://api.wpengineapi.com/v1/ssh_keys`, {
-                method: 'GET',
-                headers: { 'Authorization': this.auth.authorization },
-            })
-            const json = await data.json();
-            const keys = json.results.map(data => {
-                return {
-                    name: data.comment,
-                    value: data.uuid
-                };
-            })
-            return keys;
-        }
-    
+    getKeys = async () => {
+        const data = await fetch(`https://api.wpengineapi.com/v1/ssh_keys`, {
+            method: 'GET',
+            headers: { 'Authorization': this.auth.authorization },
+        })
+        const json = await data.json();
+        const keys = json.results.map(data => {
+            return {
+                name: data.comment,
+                value: data.uuid
+            };
+        })
+        console.log(keys);
+        return keys;    
     }
 
     /**
