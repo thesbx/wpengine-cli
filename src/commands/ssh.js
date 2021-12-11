@@ -23,7 +23,45 @@ export class SSH extends Commands {
      * @returns
      * @since 1.0.0
      */
-    showKeys = async (limit) => {
+    getKeys = async (limit) => {
+        if (limit > 0) {
+            const data = await fetch(`https://api.wpengineapi.com/v1/ssh_keys?limit=${limit}`, {
+                method: 'GET',
+                headers: { 'Authorization': this.auth.authorization },
+            })
+            const json = await data.json();
+            const keys = json.results.map(data => {
+                return {
+                    name: data.comment,
+                    value: data.uuid
+                };
+            })
+            console.log(keys);
+            return keys;
+        } else {
+            const data = await fetch(`https://api.wpengineapi.com/v1/ssh_keys`, {
+                method: 'GET',
+                headers: { 'Authorization': this.auth.authorization },
+            })
+            const json = await data.json();
+            const keys = json.results.map(data => {
+                return {
+                    name: data.comment,
+                    value: data.uuid
+                };
+            })
+            return keys;
+        }
+    
+    }
+
+    /**
+     * fetches a list of SSH keys from users wpengine account
+     * @param {*} limit 
+     * @returns
+     * @since 1.0.0
+     */
+     showKeys = async (limit) => {
         if (limit > 0) {
             const data = await fetch(`https://api.wpengineapi.com/v1/ssh_keys?limit=${limit}`, {
                 method: 'GET',
@@ -51,7 +89,6 @@ export class SSH extends Commands {
                 };
             })
             console.log(keys);
-            return keys;
         }
     
     }
@@ -98,7 +135,7 @@ export class SSH extends Commands {
      * @since 1.1.0
      */
     ssh = () => {
-        this.showKeys().then(
+        this.getKeys().then(
             keys => {
                 inquirer
                 .prompt([
