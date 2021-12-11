@@ -55,8 +55,28 @@ export class SSH extends Commands {
     
     }
     
-    addKeys = async () => {
-    
+    /**
+     * Add a public key to your wpengine.com account
+     * @param {*} key 
+     */
+    addKey = async (key) => {
+        const data = await fetch(`https://api.wpengineapi.com/v1/ssh_keys`, {
+            method: 'POST',
+            body: {
+                'public_key': key
+            },
+            headers: { 
+                'Authorization': this.auth.authorization,
+                'Content-Type': 'application/json',
+                'accept': 'application/json'
+            },
+        })
+        const response = await data.json();
+        console.log("Site successfully created!", response);
+    }
+
+    deleteKey = async () => {
+
     }
     
     ssh = () => {
