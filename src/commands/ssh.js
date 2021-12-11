@@ -104,46 +104,45 @@ export class SSH extends Commands {
                 .prompt([
                     {
                         type: 'list',
-                        message: 'Choose a key',
-                        name: 'ssh_key',
-                        choices: keys
+                        message: 'Choose a command',
+                        name: 'commands',
+                        choices: [
+                            'add key',
+                            'delete key'
+                        ]
                     }
                 ])
                 .then((answersOne) => {
-                    inquirer
-                    .prompt([
-                        {
-                            type: 'list',
-                            message: 'Choose a command',
-                            name: 'commands',
-                            choices: [
-                                'add key',
-                                'delete key'
-                            ]
-                        }
-                    ])
-                    .then((answersTwo) => {
-                        if (answersTwo.commands === 'add key') {
-                            inquirer
-                            .prompt([
-                                {
-                                    type: 'text',
-                                    message: 'Paste your public key',
-                                    name: 'public_key'
-                                }
-                            ])
-                            .then((add) => {
-                                this.addKey(add.public_key)
-                            })
-                            .catch((error) => {
-                                if (error.isTtyError) {
-                                  // Prompt couldn't be rendered in the current environment
-                                } else {
-                                  // Something else went wrong
-                                }
-                            });
-                        } else if (answersTwo.commands === 'delete key') {
-                            
+                    if (answersOne.commands === 'add key') {
+                        inquirer
+                        .prompt([
+                            {
+                                type: 'text',
+                                message: 'Paste your public key',
+                                name: 'public_key'
+                            }
+                        ])
+                        .then((add) => {
+                            this.addKey(add.public_key)
+                        })
+                        .catch((error) => {
+                            if (error.isTtyError) {
+                              // Prompt couldn't be rendered in the current environment
+                            } else {
+                              // Something else went wrong
+                            }
+                        });
+                    } else if (answersOne.commands === 'delete key') {
+                        inquirer
+                        .prompt([
+                            {
+                                type: 'list',
+                                message: 'Choose a key',
+                                name: 'ssh_key',
+                                choices: keys
+                            }
+                        ])
+                        .then((answersTwo) => {
                             inquirer
                             .prompt([
                                 {
@@ -153,9 +152,11 @@ export class SSH extends Commands {
                                 }
                             ])
                             .then((deleteKey) => {
-                                console.log(answersOne.ssh_key)
                                 if(deleteKey.confirm) {
-                                    this.deleteKey(answersOne.ssh_key)
+                                    this.deleteKey(answersTwo.ssh_key)
+                                    console.log('Key deleted!')
+                                } else {
+                                    console.log('exiting')
                                 }
                             })
                             .catch((error) => {
@@ -165,15 +166,15 @@ export class SSH extends Commands {
                                   // Something else went wrong
                                 }
                             });
-                        }
-                    })
-                    .catch((error) => {
-                        if (error.isTtyError) {
-                          // Prompt couldn't be rendered in the current environment
-                        } else {
-                          // Something else went wrong
-                        }
-                    });
+                        })
+                        .catch((error) => {
+                            if (error.isTtyError) {
+                              // Prompt couldn't be rendered in the current environment
+                            } else {
+                              // Something else went wrong
+                            }
+                        });
+                    }
                 })
                 .catch((error) => {
                     if (error.isTtyError) {
