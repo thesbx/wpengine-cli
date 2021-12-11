@@ -7,6 +7,7 @@
  */
 
 import fetch from 'node-fetch';
+import inquirer from 'inquirer';
 import {Commands} from '../commands/commands.js';
 
 /**
@@ -82,22 +83,106 @@ export class SSH extends Commands {
      * @since 1.1.0
      */
     deleteKey = async (key) => {
-        const data = await fetch(`https://api.wpengineapi.com/v1/ssh_keys`, {
+        const data = await fetch(`https://api.wpengineapi.com/v1/ssh_keys/${key}`, {
             method: 'DELETE',
-            body: {
-                'public_key': key
-            },
-            headers: {'Authorization': this.auth.authorization}
+            headers: {
+                'Authorization': this.auth.authorization,
+                'accept': 'application/json'
+            }
         })
-        const response = await data.json();
-        console.log("Successfully deleted your public SSH key", response);
+        console.log("Successfully deleted your public SSH key");
     }
     
     /**
      * Executes the ssh CLI.
-     * @since 
+     * @since 1.1.0
      */
     ssh = () => {
-            
+        this.showKeys().then(
+            keys => {
+                inquirer
+                .prompt([
+                    {
+                        type: 'list',
+                        message: 'Choose a key',
+                        name: 'ssh_key',
+                        choices: keys
+                    }
+                ])
+                .then((answersOne) => {
+                    inquirer
+                    .prompt([
+                        {
+                            type: 'list',
+                            message: 'Choose a command',
+                            name: 'commands',
+                            choices: [
+                                'add key',
+                                'delete key'
+                            ]
+                        }
+                    ])
+                    .then((answersTwo) => {
+                        if (answersTwo.commands === 'add key') {
+                            inquirer
+                            .prompt([
+                                {
+                                    type: 'text',
+                                    message: 'Paste your public key',
+                                    name: 'public_key'
+                                }
+                            ])
+                            .then((add) => {
+                                this.addKey(add.public_key)
+                            })
+                            .catch((error) => {
+                                if (error.isTtyError) {
+                                  // Prompt couldn't be rendered in the current environment
+                                } else {
+                                  // Something else went wrong
+                                }
+                            });
+                        } else if (answersTwo.commands === 'delete key') {
+                            
+                            inquirer
+                            .prompt([
+                                {
+                                    type: 'confirm',
+                                    message: 'Are you sure?',
+                                    name: 'confirm'
+                                }
+                            ])
+                            .then((deleteKey) => {
+                                console.log(answersOne.ssh_key)
+                                if(deleteKey.confirm) {
+                                    this.deleteKey(answersOne.ssh_key)
+                                }
+                            })
+                            .catch((error) => {
+                                if (error.isTtyError) {
+                                  // Prompt couldn't be rendered in the current environment
+                                } else {
+                                  // Something else went wrong
+                                }
+                            });
+                        }
+                    })
+                    .catch((error) => {
+                        if (error.isTtyError) {
+                          // Prompt couldn't be rendered in the current environment
+                        } else {
+                          // Something else went wrong
+                        }
+                    });
+                })
+                .catch((error) => {
+                    if (error.isTtyError) {
+                      // Prompt couldn't be rendered in the current environment
+                    } else {
+                      // Something else went wrong
+                    }
+                });      
+            }
+        )
     }
 }
