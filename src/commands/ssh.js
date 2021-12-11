@@ -18,10 +18,10 @@ import {Commands} from '../commands/commands.js';
 export class SSH extends Commands {
     
     /**
-     * fetches a list of SSH keys from users wpengine account
+     * fetches a list of SSH keys from users wpengine account (for cli)
      * @param {*} limit 
      * @returns
-     * @since 1.0.0
+     * @since 1.1.0
      */
     getKeys = async () => {
         const data = await fetch(`https://api.wpengineapi.com/v1/ssh_keys`, {
@@ -40,7 +40,7 @@ export class SSH extends Commands {
     }
 
     /**
-     * fetches a list of SSH keys from users wpengine account
+     * fetches a list of SSH keys from users wpengine account (separate command)
      * @param {*} limit 
      * @returns
      * @since 1.0.0
